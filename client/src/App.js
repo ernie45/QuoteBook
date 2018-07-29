@@ -7,9 +7,20 @@ import {
         SortStation,
         QuoteDisplay
       } from "./components";
+import API from "./utils/API";
 import './App.css';
-
 class App extends Component {
+  state = {
+    quotes: "", 
+    cards: ""
+  };
+  componentDidMount = () => {
+    API.pullDatabaseQuotes().then(data => {
+      this.setState({
+        quotes: data
+      });
+    });
+  };
   render() {
     return (
       <div className="container">
